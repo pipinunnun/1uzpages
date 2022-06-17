@@ -1,0 +1,23 @@
+{% extends 'blogs/base.html' %}
+{% load bootstrap4 %}
+
+{% block page_header%}
+
+<h2>Авторизация</h2>
+
+{% endblock page_header%}
+{% block content %}
+
+{% if form.errors %}
+<p>Логин или пароль не правильно введено. Попробуйте еще раз</p>
+{% endif %}
+<form action="{% url 'users:login' %}" method="post" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+
+    <button name="submit" class="btn btn-primary" >Авторизоваться</button>
+    {% endbuttons %}
+    <input type="hidden" name="next" value="{% url 'blogs:index' %}">
+</form>
+{% endblock content %}registration

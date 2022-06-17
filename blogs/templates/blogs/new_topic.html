@@ -1,0 +1,10 @@
+{% extends "blogs/base.html" %}
+
+{% block content %}
+<p>Добавьте новуб тему</p>
+<form action="{% url 'blogs:new_topic' %}" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button name="submit">Дбавить тему</button>
+</form>
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends "blogs/base.html" %}
+ {% block page_header%}
+<h1>ТЕМЫ</h1>
+{% endblock page_header%}
+{% block content %}
+<ul>
+    {% for topic in topics %}
+    <li><h3>
+        <a href="{% url 'blogs:topic' topic.id %}">{{topic}}</a></h3></li>
+    {% empty %}
+    <li><h3>Пока нет тем</h3></li>
+    {%  endfor %}
+</ul>
+<h3><a href="{% url 'blogs:new_topic' %}">Добавить тему</a></h3>
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% extends 'blogs/base.html' %}
+{% block page_header%}
+<h3>{{topic}}</h3>
+{% endblock page_header%}
+{% block content %}
+<p>Tемы: {{ topic}}</p>
+<p>Статьи:</p>
+<p><a href="{% url 'blogs:new_entry' topic.id %}">Добавить статью</a></p>
+    {% for entry in entries %}
+    <div class="card-mb-3">
+        <h4 class="card-header">
+            {{ entry.date_addedd|date:"M d, Y H:i" }}
+            <small><a href="{% url 'blogs:edit_entry' entry.id %}">Редоктировать статью</a></small>
+        </h4>
+        <div class="card-body">
+            {{ entry.text|linebreaks }}
+        </div>
+    </div>
+    {% empty %}
+    <p>Пока нету статей</p>
+    {% endfor %}
+{% endblock content %}
